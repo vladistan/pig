@@ -93,7 +93,8 @@ public class PigTest {
 
     File f = new File(scriptPath);
 
-    System.out.println("<script>" + f.getCanonicalFile() + "</script>" );
+    CoverageReportFactory.getTraceFileStream().write("<script>" + f.getCanonicalFile() + "</script>\n" );
+
   }
 
   public PigTest(String[] script, String[] args) {

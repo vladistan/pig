@@ -9,3 +9,8 @@ pig.jar
 /pig-withouthadoop.jar
 /pigunit.jar
 *.iml
+/.idea/
+/out/
+/ivy/pig.pom
+/ivy/pigsmoke.pom
+/ivy/pigunit.pom
