@@ -90,7 +90,7 @@ public class PigTest {
 
   public PigTest(String scriptPath, String[] args) throws IOException {
     this(args, null, readFile(scriptPath));
-    System.out.println("COV:" + scriptPath );
+    System.out.println("<script>" + scriptPath + "</script>" );
   }
 
   public PigTest(String[] script, String[] args) {
