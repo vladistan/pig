@@ -90,7 +90,10 @@ public class PigTest {
 
   public PigTest(String scriptPath, String[] args) throws IOException {
     this(args, null, readFile(scriptPath));
-    System.out.println("<script>" + scriptPath + "</script>" );
+
+    File f = new File(scriptPath);
+
+    System.out.println("<script>" + f.getCanonicalFile() + "</script>" );
   }
 
   public PigTest(String[] script, String[] args) {

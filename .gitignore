@@ -8,3 +8,4 @@ pig.jar
 
 /pig-withouthadoop.jar
 /pigunit.jar
+*.iml
