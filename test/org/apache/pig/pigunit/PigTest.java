@@ -80,8 +80,20 @@ public class PigTest {
     }};
   }
 
+  private void RecordScriptExecution(String scriptPath)
+  {
+      File f = new File(scriptPath);
+      try {
+          CoverageReportFactory.getTraceFileStream().write("<script>" + f.getCanonicalFile() + "</script>\n" );
+      } catch (IOException e) {
+          System.err.println("Can't record script execution.");
+          e.printStackTrace();
+      }
+  }
+
   public PigTest(String scriptPath) throws IOException {
     this(null, null, readFile(scriptPath));
+      RecordScriptExecution(scriptPath);
   }
 
   public PigTest(String[] script) {
@@ -90,11 +102,7 @@ public class PigTest {
 
   public PigTest(String scriptPath, String[] args) throws IOException {
     this(args, null, readFile(scriptPath));
-
-    File f = new File(scriptPath);
-
-    CoverageReportFactory.getTraceFileStream().write("<script>" + f.getCanonicalFile() + "</script>\n" );
-
+    RecordScriptExecution(scriptPath);
   }
 
   public PigTest(String[] script, String[] args) {
@@ -107,6 +115,7 @@ public class PigTest {
 
   public PigTest(String scriptPath, String[] args, String[] argFiles) throws IOException {
     this(args, argFiles, readFile(scriptPath));
+    RecordScriptExecution(scriptPath);
   }
 
   public PigTest(String scriptPath, String[] args, PigServer pig, Cluster cluster)
@@ -114,6 +123,7 @@ public class PigTest {
     this(args, null, readFile(scriptPath));
     PigTest.pig = pig;
     PigTest.cluster = cluster;
+    RecordScriptExecution(scriptPath);
   }
 
   /**
