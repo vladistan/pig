@@ -239,6 +239,8 @@ public class PigTest {
     registerScript();
     String alias = aliasOverrides.get("LAST_STORE_ALIAS");
 
+    assertEquals(true,false);
+
     assertEquals(StringUtils.join(expected, "\n"), StringUtils.join(getAlias(alias), "\n"));
   }
 
