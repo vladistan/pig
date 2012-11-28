@@ -173,7 +173,7 @@
 	<property name="asfsnapshotrepo" value="${asfrepo}/content/repositories/snapshots"/>
 	<property name="mvnrepo" value="http://repo2.maven.org/maven2"/>
 	<property name="asfstagingrepo" value="${asfrepo}/service/local/staging/deploy/maven2"/>
-    <property name="dblfuzzrsnapshotrepo" value="http://dblfuzzr.artifactoryonline.com/dblfuzzr/libs-snapshots-local" />
+    <property name="dblfuzzrsnapshotrepo" value="http://art-repo:8081/nexus/content/repositories/snapshots" />
     <property name="ivy.jar" location="${ivy.dir}/ivy-${ivy.version}.jar"/>
 	<property name="ant_task.jar" location="${ivy.dir}/maven-ant-tasks-${ant-task.version}.jar"/>
 	<property name="ant_task_repo_url"
