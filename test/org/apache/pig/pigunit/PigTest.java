@@ -239,14 +239,11 @@ public class PigTest {
     registerScript();
     String alias = aliasOverrides.get("LAST_STORE_ALIAS");
 
-    assertEquals("Poop","Paap");
-
     assertEquals(StringUtils.join(expected, "\n"), StringUtils.join(getAlias(alias), "\n"));
   }
 
   public void assertOutput(String alias, String[] expected) throws IOException, ParseException {
     registerScript();
-    assertEquals("Poop","Paap");
 
     assertEquals(StringUtils.join(expected, "\n"), StringUtils.join(getAlias(alias), "\n"));
   }
@@ -260,7 +257,6 @@ public class PigTest {
 
   public void assertOutput(String alias, File expected) throws IOException, ParseException {
     registerScript();
-    assertEquals("Poop","Paap");
 
     assertEquals(readFile(expected), StringUtils.join(getAlias(alias), "\n"));
   }
@@ -269,7 +265,6 @@ public class PigTest {
       throws IOException, ParseException {
     registerScript();
 
-    assertEquals("Poop","Paap");
     StringBuilder sb = new StringBuilder();
     Schema.stringifySchema(sb, pig.dumpSchema(aliasInput), DataType.TUPLE) ;
 
