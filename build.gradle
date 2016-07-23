@@ -1,5 +1,32 @@
+repositories {
+    mavenCentral()
+}
 
 ant.importBuild 'build.xml'
+ant.lifecycleLogLevel = "DEBUG"
+
+
+configurations {
+    junitAnt
+}
+
+
+dependencies {
+    junitAnt 'junit:junit:4.8.2'
+    junitAnt('org.apache.ant:ant-junit:1.9.2') {
+        transitive = false
+    }
+    junitAnt('org.apache.ant:ant-junit4:1.9.2') {
+        transitive = false
+    }
+}
+
+ant.taskdef(name: 'junit', classname: 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTask',
+            classpath: configurations.junitAnt.asPath)
+
+
+println ant.references.antPath
+println ant.references['antPath']
 
 task gBuild(dependsOn: 'test-commit') << {
     println "Gradle Build started"
