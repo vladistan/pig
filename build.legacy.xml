@@ -169,6 +169,9 @@
         <property name="build.path" value="${env.PATH};"/>
     </target>
 
+    <property name="gradle.executable" location="./gradlew" />
+
+
     <!-- javadoc properties  -->
     <property name="javadoc.link.java" value="http://download.oracle.com/javase/1.5.0/docs/api/"/>
 
@@ -721,10 +724,19 @@
         <buildJar svnString="${svn.revision}" outputFile="${output.jarfile.core}" includedJars="core.dependencies.jar"/>
         <buildJar svnString="${svn.revision}" outputFile="${output.jarfile.withouthadoop}"
                   includedJars="runtime.dependencies-withouthadoop.jar"/>
-        <antcall target="copyCommonDependencies"/>
-        <antcall target="copyh1Dependencies"/>
-        <antcall target="copyh2Dependencies"/>
+        <gradlecall target="copyCommonDependencies" />
+        <gradlecall target="copyh1Dependencies"/>
+        <gradlecall target="copyh2Dependencies"/>
     </target>
+
+    <macrodef name="gradlecall">
+        <attribute name="target" default="NOT SET"/>
+        <sequential>
+            <exec executable="${gradle.executable}" dir=".">
+                <arg value="@{target}"/>
+            </exec>
+        </sequential>
+    </macrodef>
 
     <target name="copyCommonDependencies">
         <mkdir dir="${lib.dir}"/>
