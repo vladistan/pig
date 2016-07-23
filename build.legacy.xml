@@ -1660,11 +1660,9 @@
         </javadoc>
     </target>
 
-    <target name="ivy-init-dirs" depends="gradleBuildIvyMavenDir">
-        <mkdir dir="${build.ivy.dir}"/>
-        <mkdir dir="${build.ivy.lib.dir}"/>
-        <mkdir dir="${build.ivy.report.dir}"/>
-        <mkdir dir="${build.ivy.maven.dir}"/>
+    <target name="ivy-init-dirs" depends="ivy-init-d">
+
+
     </target>
 
     <target name="ivy-probe-antlib">

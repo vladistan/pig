@@ -36,14 +36,23 @@ ant.taskdef(name: 'junit', classname: 'org.apache.tools.ant.taskdefs.optional.ju
             classpath: configurations.junitAnt.asPath)
 
 
-task gBuild(dependsOn: 'test-commit') << {
-    println "Gradle Build done"
-}
+task "ivy-init-d" << {
+    def ivyDir = ant.properties['build.ivy.dir']
+    def ivyLibDir = ant.properties['build.ivy.lib.dir']
+    def ivyReportDir = ant.properties['build.ivy.report.dir']
+    def mvnDir = ant.properties['build.ivy.maven.dir']
 
-task gIvy(dependsOn: 'ivy-init')
+    println "Build Gradle Ivy Maven Dir:" + ivyDir
+    println "Build Gradle Ivy Maven Dir:" + ivyLibDir
+    println "Build Gradle Ivy Maven Dir:" + ivyReportDir
+    println "Build Gradle Ivy Maven Dir:" + mvnDir
 
-task gradleBuildIvyMavenDir << {
-    println "Build Gradle Ivy Maven Dir"
+    new File(ivyDir).mkdirs()
+    new File(ivyLibDir).mkdirs()
+    new File(ivyReportDir).mkdirs()
+    new File(mvnDir).mkdirs()
+
+
 }
 
 task antGraph(dependsOn: 'grand')
