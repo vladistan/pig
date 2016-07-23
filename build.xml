@@ -1,0 +1,21 @@
+
+<project name="PigAnt" default="jar"
+         xmlns:artifact="urn:maven-artifact-ant"
+         xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property name="gradle.executable" location="./gradlew" />
+
+    <macrodef name="gradle-call">
+        <attribute name="target" default="NOT SET"/>
+        <sequential>
+            <exec executable="${gradle.executable}" dir=".">
+                <arg value="@{target}"/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+    <target name="jar">
+        <gradle-call target="jar"/>
+    </target>
+
+</project>
