@@ -1,1 +1,2 @@
-gradle gBuild
+#!/usr/bin/env bash
+gradle test-commit
