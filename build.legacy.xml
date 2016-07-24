@@ -1660,10 +1660,6 @@
         </javadoc>
     </target>
 
-    <target name="ivy-init-dirs" depends="ivy-init-d">
-
-
-    </target>
 
     <target name="ivy-probe-antlib">
         <condition property="ivy.found">
