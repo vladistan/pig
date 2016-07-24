@@ -437,11 +437,8 @@
     <!-- ================================================================== -->
     <!-- Clean.  Delete the build files, and their directories              -->
     <!-- ================================================================== -->
-    <target name="clean" description="Cleanup build artifacts">
-        <delete dir="${src.gen.dir}"/>
-        <delete dir="${docs.dir}/build"/>
+    <target name="clean" depends="gclean" description="Cleanup build artifacts">
         <delete file="${jdiff.xml.dir}\${name}_${version}.xml"/>
-        <delete dir="${build.dir}"/>
         <delete dir="${src.gen.dot.parser.dir}"/>
         <delete>
             <fileset dir="${basedir}" includes="pig*.jar"/>
