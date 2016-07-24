@@ -36,7 +36,7 @@ ant.taskdef(name: 'junit', classname: 'org.apache.tools.ant.taskdefs.optional.ju
             classpath: configurations.junitAnt.asPath)
 
 
-task "ivy-init-d" << {
+task "ivy-init-dirs" << {
     def ivyDir = ant.properties['build.ivy.dir']
     def ivyLibDir = ant.properties['build.ivy.lib.dir']
     def ivyReportDir = ant.properties['build.ivy.report.dir']
