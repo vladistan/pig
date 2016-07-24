@@ -996,7 +996,7 @@
     </macrodef>
 
     <target name="test" description="to call the test-core and test-contrib target">
-        <antcall target="test-core" inheritRefs="true" inheritall="true"/>
+        <gradlecall target="test-core"/>
     </target>
 
     <target name="test-core-mrtez" description="run core tests on both mr and tez mode"
