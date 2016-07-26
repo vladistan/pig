@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "cz.malohlava:visteg:1.0.1"
+    }
+}
+
+apply plugin: "cz.malohlava"
+
+
+
+repositories {
+    mavenCentral()
+}
+
+ant.importBuild 'build.legacy.xml'
+ant.lifecycleLogLevel = "DEBUG"
+
+
+
+
+dependencies {
+}
+
+task antGraph(dependsOn: 'grand')
