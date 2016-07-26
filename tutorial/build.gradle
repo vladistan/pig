@@ -23,14 +23,23 @@ ant.lifecycleLogLevel = "DEBUG"
 dependencies {
 }
 
-task antGraph(dependsOn: 'grand')
+task antGraph(dependsOn: 'grand') {
+    description 'Generate Ant dependency graph'
+}
 
-task makeBuildXml << {
 
+
+task makeBuildXml {
+    description "Generate build.xml for legacy builds"
+}
+
+makeBuildXml << {
 
     def writer = new FileWriter("build.xml")
     def xml = new groovy.xml.MarkupBuilder(writer)
-    xml.project( basedir: ".", default: "tar", name: "pigtutorial") {
+    xml.project( basedir: ".",
+                 default: "tar",
+                 name: "pigtutorial") {
 
 
         property('name': 'gradle.executable', 'location': '../gradlew')
@@ -46,7 +55,7 @@ task makeBuildXml << {
 
         tasks.each { task ->
 
-            target('name': task.name) {
+            target('name': task.name, 'description' : task.description) {
                 gradlecall('target': task.name)
             }
 

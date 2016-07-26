@@ -52,7 +52,7 @@
         <mkdir dir="${tar.dir.final}"/>
     </target>
 
-    <target name="clean">
+    <target name="clean" description="clean up tutorial build directory">
         <delete dir="build"/>
         <delete file="${zip.file}"/>
     </target>
@@ -96,7 +96,7 @@
         </typedef>
     </target>
 
-    <target name="grand" depends="grandviz-init">
+    <target name="grand" description="generate Ant task graph" depends="grandviz-init">
         <grand output="build.dot"/>
     </target>
 </project>

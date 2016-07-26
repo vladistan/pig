@@ -8,34 +8,34 @@
       </exec>
     </sequential>
   </macrodef>
-  <target name='antGraph'>
+  <target name='antGraph' description='Generate Ant dependency graph'>
     <gradlecall target='antGraph' />
   </target>
-  <target name='clean'>
+  <target name='clean' description='clean up tutorial build directory'>
     <gradlecall target='clean' />
   </target>
-  <target name='compile'>
+  <target name='compile' description='compiles tutorial udfs'>
     <gradlecall target='compile' />
   </target>
-  <target name='cp'>
+  <target name='cp' description='prepare tar creation'>
     <gradlecall target='cp' />
   </target>
-  <target name='grand'>
+  <target name='grand' description='generate Ant task graph'>
     <gradlecall target='grand' />
   </target>
-  <target name='grandviz-init'>
+  <target name='grandviz-init' description=''>
     <gradlecall target='grandviz-init' />
   </target>
-  <target name='init'>
+  <target name='init' description=''>
     <gradlecall target='init' />
   </target>
-  <target name='jar'>
+  <target name='jar' description='create tutorial jar file'>
     <gradlecall target='jar' />
   </target>
-  <target name='makeBuildXml'>
+  <target name='makeBuildXml' description='Generate build.xml for legacy builds'>
     <gradlecall target='makeBuildXml' />
   </target>
-  <target name='tar'>
+  <target name='tar' description='construct tutorial tar file'>
     <gradlecall target='tar' />
   </target>
 </project>
