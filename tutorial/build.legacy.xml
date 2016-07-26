@@ -30,6 +30,9 @@
     <property name="src.dir" value="src/org/apache/pig/tutorial" />
     <property name="data.dir" value="data" />
     <property name="scripts.dir" value="scripts" />
+    <property name="ivy.dir" value="${basedir}/../ivy"/>
+    <property name="grand.jar" location="${ivy.dir}/grand-1.9.1.jar"/>
+
 
     <path id="tutorial.classpath">
         <fileset dir="../build/ivy/lib/Pig">
@@ -48,10 +51,12 @@
         <mkdir dir="${tar.dir}"/>
         <mkdir dir="${tar.dir.final}"/>
     </target>
+
     <target name="clean">
         <delete dir="build"/>
         <delete file="${zip.file}"/>
     </target>
+
     <target depends="jar" name="cp" description="prepare tar creation">
         <echo> *** Preparing tar creation ***</echo>
         <copy includeemptydirs="false" todir="${tar.dir.final}">
@@ -60,6 +65,7 @@
         <fileset file="${pigjar}"/>
         </copy>
     </target>
+
     <target depends="init" name="compile" description="compiles tutorial udfs">
         <echo> *** Compiling Tutorial files ***</echo>
         <javac srcdir="${src.dir}" destdir="${build.classes}" source="${javac.version}"
@@ -67,15 +73,30 @@
             <classpath refid="tutorial.classpath"/>
         </javac>
     </target>
+
     <target depends="compile" name="jar" description="create tutorial jar file">
         <echo> *** Creating tutorial.jar ***</echo>
       <jar destfile="${tutorialjar}">
         <fileset dir="${build.classes}"/>
       </jar>
     </target>
-    <target depends="cp" name="tar" description="constract tutorial tar file">
+
+    <target depends="cp" name="tar" description="construct tutorial tar file">
         <echo> *** Creating tutorial.jar ***</echo>
         <tar destfile="${tar.file}" basedir="${tar.dir}" />
         <gzip zipfile="${zip.file}" src="${tar.file}"/>
+    </target>
+
+
+    <target name="grandviz-init">
+        <typedef resource="net/ggtools/grand/antlib.xml">
+            <classpath>
+                <pathelement location="${grand.jar}"/>
+            </classpath>
+        </typedef>
+    </target>
+
+    <target name="grand" depends="grandviz-init">
+        <grand output="build.dot"/>
     </target>
 </project>
