@@ -452,10 +452,6 @@
         <ant target="clean" dir="contrib/piggybank/java" inheritAll="false"/>
     </target>
 
-    <target name="clean-tutorial" description="Cleanup Tutorial">
-        <ant target="clean" dir="tutorial" inheritAll="false"/>
-    </target>
-
     <target name="clean-test-e2e" description="Cleanup e2e tests">
         <ant target="clean" dir="test/e2e/harness" inheritAll="false"/>
         <ant target="clean" dir="test/e2e/pig" inheritAll="false"/>
@@ -725,8 +721,9 @@
 
     <macrodef name="gradlecall">
         <attribute name="target" default="NOT SET"/>
+        <attribute name="dir" default="."/>
         <sequential>
-            <exec executable="${gradle.executable}" dir=".">
+            <exec executable="${gradle.executable}" failonerror="true" dir="@{dir}">
                 <arg value="@{target}"/>
             </exec>
         </sequential>

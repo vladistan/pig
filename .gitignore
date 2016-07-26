@@ -18,6 +18,7 @@ pig-withouthadoop.jar
 *.classpath
 *.project
 *.crc
+.gradle
 .ant-targets-build.xml
 contrib/piggybank/java/piggybank.jar
 conf/log4j.properties

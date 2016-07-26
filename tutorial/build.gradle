@@ -20,10 +20,41 @@ repositories {
 ant.importBuild 'build.legacy.xml'
 ant.lifecycleLogLevel = "DEBUG"
 
-
-
-
 dependencies {
 }
 
 task antGraph(dependsOn: 'grand')
+
+task makeBuildXml << {
+
+
+    def writer = new FileWriter("build.xml")
+    def xml = new groovy.xml.MarkupBuilder(writer)
+    xml.project( basedir: ".", default: "tar", name: "pigtutorial") {
+
+
+        property('name': 'gradle.executable', 'location': '../gradlew')
+
+        macrodef('name':'gradlecall') {
+            attribute('name':'target', default:'NOT-SET')
+            sequential() {
+                exec( 'executable': "\${gradle.executable}") {
+                    arg('value': '@{target}')
+                }
+            }
+        }
+
+        tasks.each { task ->
+
+            target('name': task.name) {
+                gradlecall('target': task.name)
+            }
+
+        }
+
+    }
+
+
+
+}
+

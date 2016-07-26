@@ -1,0 +1,41 @@
+<project basedir='.' default='tar' name='pigtutorial'>
+  <property name='gradle.executable' location='../gradlew' />
+  <macrodef name='gradlecall'>
+    <attribute name='target' default='NOT-SET' />
+    <sequential>
+      <exec executable='${gradle.executable}'>
+        <arg value='@{target}' />
+      </exec>
+    </sequential>
+  </macrodef>
+  <target name='antGraph'>
+    <gradlecall target='antGraph' />
+  </target>
+  <target name='clean'>
+    <gradlecall target='clean' />
+  </target>
+  <target name='compile'>
+    <gradlecall target='compile' />
+  </target>
+  <target name='cp'>
+    <gradlecall target='cp' />
+  </target>
+  <target name='grand'>
+    <gradlecall target='grand' />
+  </target>
+  <target name='grandviz-init'>
+    <gradlecall target='grandviz-init' />
+  </target>
+  <target name='init'>
+    <gradlecall target='init' />
+  </target>
+  <target name='jar'>
+    <gradlecall target='jar' />
+  </target>
+  <target name='makeBuildXml'>
+    <gradlecall target='makeBuildXml' />
+  </target>
+  <target name='tar'>
+    <gradlecall target='tar' />
+  </target>
+</project>
