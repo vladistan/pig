@@ -1,3 +1,20 @@
+/**
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+**/
+
 buildscript {
     repositories {
         maven {
@@ -62,8 +79,39 @@ makeBuildXml << {
         }
 
     }
+}
 
+task tar(type:Tar, dependsOn: cp) {
+    description "construct tutorial tar file"
 
+    from(ant.properties['tar.dir'])
+    baseName = "tutorial"
+    compression =  Compression.GZIP
+    extension = "tar.gz"
 
 }
+
+tar << {
+    println "*** Creating tutorial.jar ***"
+}
+
+
+task clean {
+    description "clean up tutorial build directory"
+}
+
+clean << {
+    delete ant.properties['zip.file']
+    delete 'build'
+
+}
+
+task init << {
+
+    new File(ant.properties['ivy.dir']).mkdirs()
+    new File(ant.properties['build.classes']).mkdirs()
+    new File(ant.properties['tar.dir.final']).mkdirs()
+
+}
+
 
