@@ -72,8 +72,4 @@ task "ivy-init-dirs" << {
 
 }
 
-task "clean-tutorial"(type: Exec) {
-    commandLine './gradlew', '-p', 'tutorial', 'clean'
-}
-
 task antGraph(dependsOn: 'grand')
