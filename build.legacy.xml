@@ -724,6 +724,7 @@
         <attribute name="dir" default="."/>
         <sequential>
             <exec executable="${gradle.executable}" failonerror="true" dir="@{dir}">
+                <arg value="--debug"/>
                 <arg value="@{target}"/>
             </exec>
         </sequential>
