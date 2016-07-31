@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-gradle test-commit
-gradle test
+#gradle test-commit
+gradle --debug test
