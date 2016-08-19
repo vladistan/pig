@@ -103,6 +103,7 @@
     <property name="test.unit.file" value="${test.src.dir}/unit-tests"/>
     <property name="test.smoke.file" value="${test.src.dir}/smoke-tests"/>
     <property name="test.all.file" value="${test.src.dir}/all-tests"/>
+    <property name="test.fix.file" value="${test.src.dir}/fix-tests"/>
     <property name="test.exclude.file" value="${test.src.dir}/excluded-tests"/>
     <property name="test.exclude.file.20" value="${test.src.dir}/excluded-tests-20"/>
     <property name="test.exclude.file.23" value="${test.src.dir}/excluded-tests-23"/>
@@ -861,6 +862,11 @@
     <target name="test-core" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check,jackson-pig-3039-test-download" description="Run full set of unit tests">
         <macro-test-runner test.file="${test.all.file}" tests.failed="test-core.failed" />
         <fail if="test-core.failed">Tests failed!</fail>
+    </target>
+
+    <target name="test-fix" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check,jackson-pig-3039-test-download" description="Run full set of unit tests">
+        <macro-test-runner test.file="${test.fix.file}" tests.failed="test-fix.failed" />
+        <fail if="test-fix.failed">Tests failed!</fail>
     </target>
 
     <target name="test-commit" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check" description="Run approximate 10-minute set of unit tests prior to commiting">
