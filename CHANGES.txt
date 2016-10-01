@@ -24,13 +24,73 @@ INCOMPATIBLE CHANGES
  
 IMPROVEMENTS
 
+PIG-4931: Document IN operator (dbist13 vi daijy)
+
+PIG-4852: Add accumulator implementation for MaxTupleBy1stField (szita via daijy)
+
+PIG-4925: Support for passing the bloom filter to the Bloom UDF (rohini)
+
+PIG-4911: Provide option to disable DAG recovery (rohini)
+
+PIG-4906: Add Bigdecimal functions in Over function (cgalan via daijy)
+
 PIG-2768: Fix org.apache.hadoop.conf.Configuration deprecation warnings for Hadoop 23 (rohini)
  
 OPTIMIZATIONS
  
 BUG FIXES
 
-Release 0.16.0 - Unreleased
+PIG-4933: TestDataBagAccess.testBagConstantFlatten1/TestLogicalPlanBuilder.testQuery90 broken after PIG-2315 (knoguchi)
+
+PIG-4965: Refactor test/perf/pigmix/bin/runpigmix.pl to delete the output of single test case
+  if we enable cleanup_after_test (kellyzly via daijy)
+
+PIG-4966: Fix Pig compatibility with Hive 2.1.0 (zyork via daijy)
+
+PIG-4935: TEZ_USE_CLUSTER_HADOOP_LIBS is always set to true (rohini)
+
+PIG-4961: CROSS followed by LIMIT inside nested foreach drop data from result (rohini)
+
+PIG-4960: Split followed by order by/skewed join is skewed in Tez (rohini)
+
+PIG-4957: See "Received kill signal" message for a normal run after PIG-4921 (rohini)
+
+PIG-4953: Predicate push-down will not run filters for single unary expressions (rdblue via daijy)
+
+PIG-4940: Predicate push-down filtering unary expressions can be pushed (rdblue via daijy)
+
+PIG-4938: [PiggyBank] XPath returns empty values when using aggregation method (nkollar via daijy)
+
+PIG-4896: Param substitution ignored when redefined (knoguchi)
+
+PIG-2315: Make as clause work in generate (daijy via knoguchi)
+
+PIG-4921: Kill running jobs on InterruptedException (rohini)
+
+PIG-4916: Pig on Tez fail to remove temporary HDFS files in some cases (daijy)
+
+Release 0.16.1 - Unreleased
+
+INCOMPATIBLE CHANGES
+
+IMPROVEMENTS
+
+PIG-4945: Update document for conflicting macro params (knoguchi via daijy)
+
+OPTIMIZATIONS
+
+BUG FIXES
+
+PIG-4947: LOAD with HBaseStorage using a mix of pure wildcards and prefixed wildcards results
+  in empty maps for the pure wildcarded column families (daijy)
+
+PIG-4948: Pig on Tez AM use too much memory on a small cluster (daijy)
+
+PIG-4949: Fix registering jar in S3 which was broken by PIG-4417 in Pig 0.16 (yangyishan0901m via daijy)
+
+PIG-4950: Fix minor issues with running scripts in non-local FileSystems (petersla via daijy)
+
+Release 0.16.0
 
 INCOMPATIBLE CHANGES
 
@@ -200,8 +260,6 @@ PIG-4869: Removing unwanted configuration in Tez broke ConfiguredFailoverProxyPr
 PIG-4867: -stop_on_failure does not work with Tez (rohini)
 
 PIG-4844: Tez AM runs out of memory when vertex has high number of outputs (rohini)
-
-PIG-3906: ant site errors out (nielsbasjes via daijy)
 
 PIG-4851: Null not padded when input has less fields than declared schema for some loader (rohini)
 

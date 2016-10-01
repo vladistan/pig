@@ -103,6 +103,7 @@
     <property name="test.unit.file" value="${test.src.dir}/unit-tests"/>
     <property name="test.smoke.file" value="${test.src.dir}/smoke-tests"/>
     <property name="test.all.file" value="${test.src.dir}/all-tests"/>
+    <property name="test.fix.file" value="${test.src.dir}/fix-tests"/>
     <property name="test.exclude.file" value="${test.src.dir}/excluded-tests"/>
     <property name="test.exclude.file.20" value="${test.src.dir}/excluded-tests-20"/>
     <property name="test.exclude.file.23" value="${test.src.dir}/excluded-tests-23"/>
@@ -275,7 +276,7 @@
     <property name="xerces.jar" value="${ivy.lib.dir}/xercesImpl-${xerces.version}.jar"/>
     <property name="jdiff.build.dir" value="${build.docs}/jdiff"/>
     <property name="jdiff.xml.dir" value="${docs.dir}/jdiff"/>
-    <property name="jdiff.stable" value="0.15.0"/>
+    <property name="jdiff.stable" value="0.16.0"/>
     <property name="jdiff.stable.javadoc" value="http://hadoop.apache.org/${name}/docs/r${jdiff.stable}/api/"/>
 
     <!-- Packaging properties -->
@@ -643,21 +644,9 @@
        </copy>
     </target>
 
-    <target name="forrest.check" depends="forrest.check.plugins" unless="forrest.home">
+    <target name="forrest.check" unless="forrest.home">
        <fail message="'forrest.home' is not defined.
       Please pass -Dforrest.home=&lt;base of Apache Forrest installation&gt; to Ant on the command-line." />
-    </target>
-
-    <target name="forrest.check.plugins" >
-        <fail message="${forrest.home}/plugins is not writeable. Fix: chmod a+rwX -R ${forrest.home}/plugins">
-            <condition>
-                <not>
-                    <isfileselected file="${forrest.home}/plugins">
-                        <writable />
-                    </isfileselected>
-                </not>
-            </condition>
-        </fail>
     </target>
 
     <target name="source-jar" depends="cc-compile">
@@ -873,6 +862,11 @@
     <target name="test-core" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check,jackson-pig-3039-test-download" description="Run full set of unit tests">
         <macro-test-runner test.file="${test.all.file}" tests.failed="test-core.failed" />
         <fail if="test-core.failed">Tests failed!</fail>
+    </target>
+
+    <target name="test-fix" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check,jackson-pig-3039-test-download" description="Run full set of unit tests">
+        <macro-test-runner test.file="${test.fix.file}" tests.failed="test-fix.failed" />
+        <fail if="test-fix.failed">Tests failed!</fail>
     </target>
 
     <target name="test-commit" depends="setWindowsPath,setLinuxPath,compile-test,jar,debugger.check" description="Run approximate 10-minute set of unit tests prior to commiting">
